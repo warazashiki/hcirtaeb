@@ -13,7 +13,7 @@ import net.minecraft.world.item.MaceItem;
 public class Criticals extends Module {
 
     public final BoolSetting maceSpoof = boolSetting("MaceSpoof", "重锤平地暴击", false);
-    public final DoubleSetting extraHeight = doubleSetting("ExtraHeight", "额外高度", 1.51, 0.0, 1000.0);
+    public final DoubleSetting extraHeight = doubleSetting("ExHeight", "额外高度", 1.51, 0.0, 1000.0);
     public final BoolSetting autoSwap = boolSetting("AutoSwap", "自动切锤", false);
     private boolean didSwap = false;
     private boolean HasMace = false;

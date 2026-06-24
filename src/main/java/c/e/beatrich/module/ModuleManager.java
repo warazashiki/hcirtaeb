@@ -3,6 +3,7 @@ package c.e.beatrich.module;
 import c.e.beatrich.module.modules.combat.Criticals;
 import c.e.beatrich.module.modules.misc.test;
 import c.e.beatrich.module.modules.player.Fireworks;
+import c.e.beatrich.module.modules.player.Multitask;
 import c.e.beatrich.module.modules.render.NoRender;
 import c.e.beatrich.module.modules.render.XRay;
 import c.e.beatrich.module.modules.world.FullBright;
@@ -49,6 +50,7 @@ public class ModuleManager {
 
         // Player
         modules.add(new Fireworks());
+        modules.add(new Multitask());
 
         // World
         modules.add(new FullBright());
