@@ -22,7 +22,7 @@ import java.util.Set;
 
 public class XRay extends Module {
 
-    public static final BlockListSetting BList = new BlockListSetting("BlockList", "BlockList", ore());
+    public static final BlockListSetting BList = new BlockListSetting("BlockList", "方块列表", ore());
     public static final BoolSetting ExposedOnly = new BoolSetting("ExposedOnly", "仅透视裸露方块", false);
     public IntSetting CoolDown = intSetting("CoolDown", "刷新间隔", 10, 1, 100);
 

@@ -16,8 +16,6 @@ public abstract class VisGraphMixin {
     private void onSetOpaque(BlockPos pos, CallbackInfo ci) {
         VisGraphEvent event = new VisGraphEvent();
         for (Module m : ModuleManager.get().getActive()) m.onVisGraph(event);
-        if (event.isCancelled()) {
-            ci.cancel();
-        }
+        if (event.isCancelled()) ci.cancel();
     }
 }

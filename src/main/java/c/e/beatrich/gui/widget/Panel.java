@@ -13,17 +13,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 可拖拽浮动分类窗口 — Meteor 风格。
- * <p>
- * 每个 Category 对应一个 Panel。<br>
- * 特性：<br>
- * - 紫色标题栏（{@link Theme#ACCENT}），白色标题文字<br>
- * - 标题栏右侧折叠按钮（点击折叠为仅标题栏）<br>
- * - 内容区：模块按钮垂直列表，内容溢出时显示滚动条<br>
- * - 拖拽标题栏移动窗口位置<br>
- * - 2px 黑色外边框（Meteor 标志性风格）
- */
 public class Panel extends Widget {
 
     private static final int COLLAPSE_BUTTON_WIDTH = 10;
@@ -44,14 +33,14 @@ public class Panel extends Widget {
     public Panel(Category category, Font font, int x, int y) {
         super(x, y, 0, 0);
         this.category = category;
-        this.title = category.name;
+        this.title = category.description;
         this.font = font;
 
         // 计算面板宽度：基于最长模块名
         List<Module> modules = c.e.beatrich.module.ModuleManager.get().getByCategory(category);
         int maxModuleNameWidth = 0;
         for (Module m : modules) {
-            int w = font.width(m.name);
+            int w = font.width(m.description);
             if (w > maxModuleNameWidth) maxModuleNameWidth = w;
         }
         // 宽度 = 最长模块名 + 左侧缩进 + 左侧条 + 右侧箭头空间 + 边框

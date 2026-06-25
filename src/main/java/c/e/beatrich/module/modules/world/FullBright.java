@@ -18,7 +18,7 @@ public class FullBright extends Module {
     private double previousGamma;
 
     public FullBright() {
-        super("FullBright", "使视野保持明亮", Category.WORLD);
+        super("FullBright", "夜视", Category.WORLD);
         addSetting(GammaOverride);
     }
     public static boolean enabled() {

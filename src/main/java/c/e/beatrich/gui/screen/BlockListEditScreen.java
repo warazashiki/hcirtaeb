@@ -48,7 +48,6 @@ public class BlockListEditScreen extends Screen {
 
     @Override
     protected void init() {
-        // 整体缩小 25% — 水平留白各 12.5%，垂直各 12.5%
         marginX = width / 8;
         marginTop = height / 8;
         int contentW = width - marginX * 2;
@@ -99,18 +98,18 @@ public class BlockListEditScreen extends Screen {
         int searchY = marginTop + TITLE_H;
         g.fill(marginX + 2, searchY, marginX + contentW - 2, searchY + SEARCH_H, Theme.MODULE_BG.getRGB());
         String prompt = searchFocused
-            ? "Search: " + filter + (cursorTick / 20 % 2 == 0 ? "|" : " ")
-            : (filter.isEmpty() ? "Click to search..." : "Search: " + filter);
+            ? "搜索: " + filter + (cursorTick / 20 % 2 == 0 ? "|" : " ")
+            : (filter.isEmpty() ? "点击搜索..." : "搜索: " + filter);
         g.drawString(font, Component.literal(prompt), marginX + 4,
                 searchY + (SEARCH_H - font.lineHeight) / 2, Theme.TEXT_PRIMARY.getRGB());
 
         // === 列标题 ===
         int colHeaderY = searchY + SEARCH_H;
         g.fill(lx, colHeaderY, lx + lw, colHeaderY + ROW_H, Theme.MODULE_ACTIVE_BG.getRGB());
-        g.drawString(font, Component.literal("Selected"), lx + 2,
+        g.drawString(font, Component.literal("已选中"), lx + 2,
                 colHeaderY + (ROW_H - font.lineHeight) / 2, Theme.TEXT_PRIMARY.getRGB());
         g.fill(rx, colHeaderY, rx + rw, colHeaderY + ROW_H, Theme.MODULE_ACTIVE_BG.getRGB());
-        g.drawString(font, Component.literal("Unselected"), rx + 2,
+        g.drawString(font, Component.literal("未选中"), rx + 2,
                 colHeaderY + (ROW_H - font.lineHeight) / 2, Theme.TEXT_SECONDARY.getRGB());
 
         // === 裁剪到列表区域 ===

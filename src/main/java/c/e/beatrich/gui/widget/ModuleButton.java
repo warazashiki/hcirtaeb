@@ -114,7 +114,7 @@ public class ModuleButton extends Widget {
         int textX = x + TEXT_PAD_LEFT + LEFT_BAR_WIDTH;
         int textY = y + (height - font.lineHeight) / 2;
         Color textColor = module.isActive() ? Theme.TEXT_ACTIVE : Theme.TEXT_INACTIVE;
-        g.drawString(font, Component.literal(module.name), textX, textY, textColor.getRGB());
+        g.drawString(font, Component.literal(module.description), textX, textY, textColor.getRGB());
 
         // === 展开箭头 ===
         if (!module.getSettings().isEmpty()) {

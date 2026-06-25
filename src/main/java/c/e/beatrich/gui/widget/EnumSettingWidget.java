@@ -43,9 +43,7 @@ public class EnumSettingWidget extends Widget {
         g.fill(x, y, x + width, y + closedH, bg.getRGB());
 
         // 名称
-        g.drawString(font, Component.literal(setting.name), x + PAD_LEFT, textY, Theme.TEXT_SECONDARY.getRGB());
-
-        // 下拉列表（始终从标题行正下方开始）
+        g.drawString(font, Component.literal(setting.description), x + PAD_LEFT, textY, Theme.TEXT_SECONDARY.getRGB());
         if (expanded) {
             Object[] values = setting.getValues();
             int dropY = y + closedH;

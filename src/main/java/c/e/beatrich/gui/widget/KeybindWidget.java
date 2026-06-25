@@ -49,7 +49,7 @@ public class KeybindWidget extends Widget {
         int textY = y + (height - font.lineHeight) / 2;
 
         // === 名称 ===
-        g.drawString(font, Component.literal("Keybind"), x + PAD_LEFT, textY, Theme.TEXT_SECONDARY.getRGB());
+        g.drawString(font, Component.literal("快捷键"), x + PAD_LEFT, textY, Theme.TEXT_SECONDARY.getRGB());
 
         // === 值区域 ===
         String display;

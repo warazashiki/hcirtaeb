@@ -4,12 +4,6 @@ import net.minecraft.client.gui.GuiGraphics;
 
 import java.awt.*;
 
-/**
- * Meteor Client 风格的 GUI 主题配色与渲染辅助。
- * <p>
- * 核心特征：紫色强调色、暗黑半透明背景、2px 黑色边框、平滑动画。
- * 所有颜色使用 {@link java.awt.Color} ARGB 格式。
- */
 public final class Theme {
 
     private Theme() {
@@ -23,9 +17,6 @@ public final class Theme {
 
     /** 强调色 hover 变体 — 比 ACCENT 稍亮 */
     public static final Color ACCENT_HOVER = new Color(160, 80, 240, 255);
-
-    /** 强调色 pressed 变体 — 比 ACCENT 稍暗 */
-    public static final Color ACCENT_PRESSED = new Color(125, 45, 200, 255);
 
     // ========================= 背景 =========================
 

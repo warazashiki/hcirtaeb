@@ -59,7 +59,7 @@ public class BoolSettingWidget extends Widget {
         // 文本
         int textY = y + (height - font.lineHeight) / 2;
         Color textColor = anim > 0.5f ? Theme.TEXT_PRIMARY : Theme.TEXT_SECONDARY;
-        g.drawString(font, Component.literal(setting.name), x + TEXT_PAD_LEFT, textY, textColor.getRGB());
+        g.drawString(font, Component.literal(setting.description), x + TEXT_PAD_LEFT, textY, textColor.getRGB());
     }
 
     @Override

@@ -13,7 +13,7 @@ import net.minecraft.world.item.MaceItem;
 public class Criticals extends Module {
 
     public final BoolSetting maceSpoof = boolSetting("MaceSpoof", "重锤平地暴击", false);
-    public final DoubleSetting extraHeight = doubleSetting("ExHeight", "额外高度", 1.51, 0.0, 1000.0);
+    public final DoubleSetting FallDisdance = doubleSetting("FallDisdance", "下落高度", 1.51, 0.0, 15.0);
     public final BoolSetting autoSwap = boolSetting("AutoSwap", "自动切锤", false);
     private boolean didSwap = false;
     private boolean HasMace = false;
@@ -25,13 +25,12 @@ public class Criticals extends Module {
     }
 
     public void preAttack(Player player, Entity target) {
-        if (!isActive()) return;
-        if (mc.player == null || mc.getConnection() == null) return;
+        if (!isActive() || mc.player == null || mc.getConnection() == null) return;
         if (autoSwap.get()) swapMace();
-        if (!mc.player.isFallFlying() && mc.player.fallDistance < extraHeight.get()) {
-            double height = maceSpoof.get() && HasMace ? extraHeight.get() : CRIT_HEIGHT;
-            sendSpoofedMovement(height);
-        }
+        if (mc.player.isFallFlying()) return;
+        double height = mc.player.fallDistance > CRIT_HEIGHT ? 0.0 : CRIT_HEIGHT;
+        if (maceSpoof.get() && HasMace && mc.player.fallDistance < FallDisdance.get()) height = FallDisdance.get();
+        sendSpoofedMovement(height);
     }
 
     public void postAttack() {
@@ -40,6 +39,7 @@ public class Criticals extends Module {
     }
 
     private void sendSpoofedMovement(double height) {
+        if (0.0 == height) return;
         var conn = mc.getConnection();
         double x = mc.player.getX();
         double y = mc.player.getY();

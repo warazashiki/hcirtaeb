@@ -18,7 +18,7 @@ public class Fireworks extends Module {
     private static int t = -1;
 
     public Fireworks() {
-        super("Fireworks", "自动切出烟花使用后切回", Category.PLAYER, false);
+        super("Fireworks", "烟花", Category.PLAYER, false);
     }
 
     @Override
@@ -35,9 +35,13 @@ public class Fireworks extends Module {
                     t = 2;
                     break;
                 case 2:
-                    mc.player.connection.send(new ServerboundPlayerCommandPacket(
-                            mc.player, ServerboundPlayerCommandPacket.Action.START_FALL_FLYING));
-                    t = 3;
+                    if (!mc.player.onGround()) {
+                        mc.player.connection.send(new ServerboundPlayerCommandPacket(
+                                mc.player, ServerboundPlayerCommandPacket.Action.START_FALL_FLYING));
+                        t = 3;
+                    } else {
+                        t = 1;
+                    }
                     break;
                 case 3:
                     EntityUtils.SwapUse(FSlot);

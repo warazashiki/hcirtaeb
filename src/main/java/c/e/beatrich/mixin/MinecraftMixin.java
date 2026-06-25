@@ -33,11 +33,11 @@ public class MinecraftMixin {
     }
     @ModifyExpressionValue(method = "handleKeybinds", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;isUsingItem()Z", ordinal = 0))
     private boolean handleKeybindsModifyIsUsingItem(boolean orginal) {
-        return !Multitask.Attack.get() && orginal;
+        return !(Multitask.enabled() && Multitask.Attack.get()) && orginal;
     }
     @Inject(method = "handleKeybinds", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;isUsingItem()Z", ordinal = 0, shift = At.Shift.BEFORE))
     private void handleKeybindsInjectIsusingItem(CallbackInfo ci) {
-        if (Multitask.Attack.get() && player.isUsingItem()) {
+        if (Multitask.enabled() && Multitask.Attack.get() && player.isUsingItem()) {
             if (!options.keyUse.isDown()) gameMode.releaseUsingItem(player);
             while (options.keyUse.consumeClick());
         }

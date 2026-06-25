@@ -6,7 +6,7 @@ import c.e.beatrich.setting.types.DoubleSetting;
 
 public class TimeChanger extends Module {
     public TimeChanger() {
-        super("TimeChanger", "", Category.WORLD);
+        super("TimeChanger", "修改时间", Category.WORLD);
     }
 
     public final DoubleSetting emit = doubleSetting("time", "客户端时间", 0.0, -20000.0, 20000.0);

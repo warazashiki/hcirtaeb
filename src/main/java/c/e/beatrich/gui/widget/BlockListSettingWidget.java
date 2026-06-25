@@ -10,9 +10,6 @@ import net.minecraft.network.chat.Component;
 
 import java.awt.*;
 
-/**
- * 方块列表设置组件 — 点击打开独立编辑页面。
- */
 public class BlockListSettingWidget extends Widget {
 
     private static final int PAD_LEFT = 1;
@@ -36,7 +33,7 @@ public class BlockListSettingWidget extends Widget {
         Color bg = hovered ? Theme.MODULE_BG_HOVER : Theme.SETTING_BG;
         g.fill(x, y, x + width, y + height, bg.getRGB());
 
-        g.drawString(font, Component.literal(setting.name), x + PAD_LEFT, textY, Theme.TEXT_SECONDARY.getRGB());
+        g.drawString(font, Component.literal(setting.description), x + PAD_LEFT, textY, Theme.TEXT_SECONDARY.getRGB());
 
         String count = "[" + setting.get().size() + "]";
         g.drawString(font, Component.literal(count),
