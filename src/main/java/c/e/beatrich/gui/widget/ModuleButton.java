@@ -114,7 +114,7 @@ public class ModuleButton extends Widget {
         int textX = x + TEXT_PAD_LEFT + LEFT_BAR_WIDTH;
         int textY = y + (height - font.lineHeight) / 2;
         Color textColor = module.isActive() ? Theme.TEXT_ACTIVE : Theme.TEXT_INACTIVE;
-        g.drawString(font, Component.literal(module.description), textX, textY, textColor.getRGB());
+        g.drawString(font, Component.literal(module.name), textX, textY, textColor.getRGB());
 
         // === 展开箭头 ===
         if (!module.getSettings().isEmpty()) {
@@ -145,20 +145,9 @@ public class ModuleButton extends Widget {
         // 失去焦点：点击前先通知所有设置项
         if (expanded && settingWidgets != null) {
             // 检查点击是否命中某个设置项
-            boolean hitSetting = false;
-            for (Widget w : settingWidgets) {
-                if (w.isMouseOver(mouseX, mouseY)) {
-                    hitSetting = true;
-                } else {
-                    w.loseFocus(); // 点击别处 → 失去焦点
-                }
-            }
+            for (Widget w : settingWidgets) if (!w.isMouseOver(mouseX, mouseY)) w.loseFocus();
             // 再分发事件
-            for (Widget w : settingWidgets) {
-                if (w.mouseClicked(mouseX, mouseY, button)) {
-                    return true;
-                }
-            }
+            for (Widget w : settingWidgets) if (w.mouseClicked(mouseX, mouseY, button)) return true;
         }
 
         // 模块行本身的点击
@@ -171,11 +160,8 @@ public class ModuleButton extends Widget {
         } else if (button == GLFW.GLFW_MOUSE_BUTTON_2) {
             // 右键 → 展开/折叠设置
             if (module.getSettings().isEmpty()) return false;
-            boolean wasExpanded = expanded;
             expanded = !expanded;
-            if (expanded && settingWidgets == null) {
-                buildSettingWidgets();
-            }
+            if (expanded && settingWidgets == null) buildSettingWidgets();
             return true;
         }
 
@@ -185,45 +171,27 @@ public class ModuleButton extends Widget {
     @Override
     public boolean mouseReleased(double mouseX, double mouseY, int button) {
         // 传递给设置项
-        if (expanded && settingWidgets != null) {
-            for (Widget w : settingWidgets) {
-                if (w.mouseReleased(mouseX, mouseY, button)) return true;
-            }
-        }
+        if (expanded && settingWidgets != null) for (Widget w : settingWidgets) if (w.mouseReleased(mouseX, mouseY, button)) return true;
         return false;
     }
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
-        if (expanded && settingWidgets != null) {
-            for (Widget w : settingWidgets) {
-                if (w.mouseScrolled(mouseX, mouseY, scrollX, scrollY)) return true;
-            }
-        }
+        if (expanded && settingWidgets != null) for (Widget w : settingWidgets) if (w.mouseScrolled(mouseX, mouseY, scrollX, scrollY)) return true;
         return false;
     }
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        if (expanded && settingWidgets != null) {
-            for (Widget w : settingWidgets) {
-                if (w.keyPressed(keyCode, scanCode, modifiers)) return true;
-            }
-        }
+        if (expanded && settingWidgets != null) for (Widget w : settingWidgets) if (w.keyPressed(keyCode, scanCode, modifiers)) return true;
         return false;
     }
 
     /** 字符输入转发给设置项 */
     public boolean charTyped(char codePoint, int modifiers) {
-        if (expanded && settingWidgets != null) {
-            for (Widget w : settingWidgets) {
-                if (w.charTyped(codePoint, modifiers)) return true;
-            }
-        }
+        if (expanded && settingWidgets != null) for (Widget w : settingWidgets) if (w.charTyped(codePoint, modifiers)) return true;
         return false;
     }
-
-    // ======================== 辅助 ========================
 
     private void buildSettingWidgets() {
         settingWidgets = new ArrayList<>();
@@ -237,7 +205,6 @@ public class ModuleButton extends Widget {
             }
         }
     }
-
     private Widget createWidgetForSetting(Setting<?> setting, int sw, int sy) {
         if (setting instanceof BoolSetting bs) {
             return new BoolSettingWidget(bs, font, 0, sy, sw);
@@ -254,17 +221,12 @@ public class ModuleButton extends Widget {
         }
         return null;
     }
-
     @Override
     public boolean isMouseOver(double mx, double my) {
         // 检查模块行本身
         if (mx >= x && mx < x + width && my >= y && my < y + height) return true;
         // 检查展开的设置项
-        if (expanded && settingWidgets != null) {
-            for (Widget w : settingWidgets) {
-                if (w.isMouseOver(mx, my)) return true;
-            }
-        }
+        if (expanded && settingWidgets != null) for (Widget w : settingWidgets) if (w.isMouseOver(mx, my)) return true;
         return false;
     }
 }

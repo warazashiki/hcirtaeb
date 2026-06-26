@@ -9,13 +9,6 @@ import org.lwjgl.glfw.GLFW;
 
 import java.awt.*;
 
-/**
- * 快捷键捕获组件 — 点击后进入"监听模式"捕获下一次按键。
- * <p>
- * 左侧：设置名称（"Keybind"）<br>
- * 右侧：当前键名，点击进入监听（黄色高亮 "[...]"），按任意键设置，ESC 清除
- * </p>
- */
 public class KeybindWidget extends Widget {
 
     private static final int PAD_LEFT = 1;
@@ -49,7 +42,7 @@ public class KeybindWidget extends Widget {
         int textY = y + (height - font.lineHeight) / 2;
 
         // === 名称 ===
-        g.drawString(font, Component.literal("快捷键"), x + PAD_LEFT, textY, Theme.TEXT_SECONDARY.getRGB());
+        g.drawString(font, Component.literal("KeyBind"), x + PAD_LEFT, textY, Theme.TEXT_SECONDARY.getRGB());
 
         // === 值区域 ===
         String display;

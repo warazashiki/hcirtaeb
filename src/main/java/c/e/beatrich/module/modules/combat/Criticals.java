@@ -1,5 +1,6 @@
 package c.e.beatrich.module.modules.combat;
 
+import c.e.beatrich.mixininterface.IServerboundMovePlayerPacket;
 import c.e.beatrich.module.Category;
 import c.e.beatrich.module.Module;
 import c.e.beatrich.module.ModuleManager;
@@ -44,10 +45,13 @@ public class Criticals extends Module {
         double x = mc.player.getX();
         double y = mc.player.getY();
         double z = mc.player.getZ();
-
-        conn.send(new ServerboundMovePlayerPacket.Pos(x, y, z, false));
-        conn.send(new ServerboundMovePlayerPacket.Pos(x, y + height, z, false));
-        conn.send(new ServerboundMovePlayerPacket.Pos(x, y, z, false));
+        ServerboundMovePlayerPacket packet1 = new ServerboundMovePlayerPacket.Pos(x, y, z, false);
+        ServerboundMovePlayerPacket packet2 = new ServerboundMovePlayerPacket.Pos(x, y + height, z, false);
+        ((IServerboundMovePlayerPacket)packet1).hcirtaeb$setTag(1337);
+        ((IServerboundMovePlayerPacket)packet2).hcirtaeb$setTag(1337);
+        conn.send(packet1);
+        conn.send(packet2);
+        conn.send(packet1);
     }
 
     private void swapMace() {

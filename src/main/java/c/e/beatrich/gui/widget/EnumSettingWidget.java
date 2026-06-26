@@ -8,9 +8,6 @@ import net.minecraft.network.chat.Component;
 
 import java.awt.*;
 
-/**
- * 枚举设置组件 — 右键展开下拉列表选择。
- */
 public class EnumSettingWidget extends Widget {
 
     private static final int PAD_LEFT = 1;
@@ -43,7 +40,7 @@ public class EnumSettingWidget extends Widget {
         g.fill(x, y, x + width, y + closedH, bg.getRGB());
 
         // 名称
-        g.drawString(font, Component.literal(setting.description), x + PAD_LEFT, textY, Theme.TEXT_SECONDARY.getRGB());
+        g.drawString(font, Component.literal(setting.name), x + PAD_LEFT, textY, Theme.TEXT_SECONDARY.getRGB());
         if (expanded) {
             Object[] values = setting.getValues();
             int dropY = y + closedH;

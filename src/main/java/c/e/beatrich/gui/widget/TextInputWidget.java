@@ -45,7 +45,7 @@ public class TextInputWidget extends Widget {
         int textY = y + (height - font.lineHeight) / 2;
 
         int nameX = x + PAD_LEFT;
-        String name = truncateName(setting.description, NAME_MAX_WIDTH);
+        String name = truncateName(setting.name, NAME_MAX_WIDTH);
         g.drawString(font, Component.literal(name), nameX, textY, Theme.TEXT_SECONDARY.getRGB());
 
         String displayText = editing ? editBuffer : formatValue();

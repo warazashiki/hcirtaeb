@@ -5,6 +5,9 @@
   "mixins": [
     "BlockBehaviourMixin",
     "BlockMixin",
+    "EntityMixin",
+    "ServerboundMovePlayerPacketAccessor",
+    "ServerboundMovePlayerPacketMixin",
     "Sodium.SodiumBlockOcclusionCacheMixin",
     "Sodium.SodiumBlockRendererMixin",
     "Sodium.SodiumFluidRendererImplMixin",
@@ -20,6 +23,7 @@
     "KeyboardInputMixin",
     "LightTextureMixin",
     "LiquidBlockRendererMixin",
+    "LocalPlayerAccessor",
     "MinecraftMixin",
     "ModelBlockRendererMixin",
     "MouseHandlerMixin",

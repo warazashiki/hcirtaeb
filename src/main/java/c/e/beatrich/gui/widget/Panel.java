@@ -33,14 +33,14 @@ public class Panel extends Widget {
     public Panel(Category category, Font font, int x, int y) {
         super(x, y, 0, 0);
         this.category = category;
-        this.title = category.description;
+        this.title = category.name;
         this.font = font;
 
         // 计算面板宽度：基于最长模块名
         List<Module> modules = c.e.beatrich.module.ModuleManager.get().getByCategory(category);
         int maxModuleNameWidth = 0;
         for (Module m : modules) {
-            int w = font.width(m.description);
+            int w = font.width(m.name);
             if (w > maxModuleNameWidth) maxModuleNameWidth = w;
         }
         // 宽度 = 最长模块名 + 左侧缩进 + 左侧条 + 右侧箭头空间 + 边框

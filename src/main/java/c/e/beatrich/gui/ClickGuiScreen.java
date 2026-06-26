@@ -21,7 +21,6 @@ public class ClickGuiScreen extends Screen {
     private static final int PANEL_GAP_X = 3;
     private static final int START_X = 3;
     private static final int START_Y = 30;
-    private static final int MAX_PANELS_PER_ROW = 4;
     private final List<Panel> panels = new ArrayList<>();
     private Panel draggedPanel = null;
     private long lastFrameTime;
@@ -35,13 +34,11 @@ public class ClickGuiScreen extends Screen {
         Minecraft mc = Minecraft.getInstance();
         Category[] categories = Category.values();
         Map<String, int[]> savedPositions = ConfigManager.loadPanelPositions();
-        int col = 0;
         int currentX = START_X;
-        int currentY = START_Y;
         for (Category cat : categories) {
             List<c.e.beatrich.module.Module> modules = ModuleManager.get().getByCategory(cat);
             if (modules.isEmpty()) continue;
-            int px = currentX, py = currentY;
+            int px = currentX, py = START_Y;
             if (savedPositions.containsKey(cat.name)) {
                 int[] saved = savedPositions.get(cat.name);
                 px = saved[0];
@@ -51,12 +48,6 @@ public class ClickGuiScreen extends Screen {
             panels.add(panel);
             if (!savedPositions.containsKey(cat.name)) {
                 currentX += panel.width + PANEL_GAP_X;
-                col++;
-                if (col >= MAX_PANELS_PER_ROW) {
-                    col = 0;
-                    currentX = START_X;
-                    currentY += 150;
-                }
             }
         }
     }

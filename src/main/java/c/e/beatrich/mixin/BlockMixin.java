@@ -13,7 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Block.class)
 public abstract class BlockMixin {
-
     @Inject(method = "shouldRenderFace", at = @At("RETURN"), cancellable = true)
     private static void onShouldRenderFace(BlockState state, BlockGetter level, BlockPos pos,
                                             Direction face, BlockPos facePos,

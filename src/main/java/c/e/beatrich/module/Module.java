@@ -15,13 +15,9 @@ import org.lwjgl.glfw.GLFW;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 模块基类 — 模仿 Meteor Client 的 Module 架构。
- * 每个模块可以切换开关，拥有设置项和快捷键。
- */
-public abstract class Module {
+public abstract class Module{
 
-    protected static final Minecraft mc = Minecraft.getInstance();
+    protected final Minecraft mc = Minecraft.getInstance();
 
     public final String name;
     public final String description;

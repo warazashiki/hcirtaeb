@@ -1,6 +1,9 @@
 package c.e.beatrich.module;
 
+import c.e.beatrich.module.modules.combat.Aura;
 import c.e.beatrich.module.modules.combat.Criticals;
+import c.e.beatrich.module.modules.movement.Flight;
+import c.e.beatrich.module.modules.movement.NoFall;
 import c.e.beatrich.module.modules.player.Fireworks;
 import c.e.beatrich.module.modules.player.Multitask;
 import c.e.beatrich.module.modules.render.BlockEsp;
@@ -36,8 +39,11 @@ public class ModuleManager {
     private void initModules() {
         // Combat
         modules.add(new Criticals());
+        modules.add(new Aura());
 
         // Movement
+        modules.add(new Flight());
+        modules.add(new NoFall());
 
         // Player
         modules.add(new Fireworks());
